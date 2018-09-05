@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.ArticleMapper">
+
+    <select id="selectById" parameterType="java.lang.Integer" resultType="model.Article">
+        select * from article where id = #{id}
+    </select>
+
+    <select id="selectList" parameterType="model.PageArc" resultType="model.Article">
+        select * from article where forum_id = #{id} and title like '%${title}%' limit #{index},#{limit}
+    </select>
+
+    <select id="selectCount" parameterType="model.PageArc" resultType="java.lang.Integer">
+        select count(1) from article where forum_id = #{id} and title like '%${title}%'
+    </select>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from article where article_id = #{id}
+    </delete>
+
+</mapper>
