@@ -11,6 +11,8 @@ import service.IArticleService;
 import service.IForumService;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 public class ForumController {
@@ -81,6 +83,76 @@ public class ForumController {
 
         return i;
     }
+
+    @ResponseBody
+    @RequestMapping("/article/add")
+    public int toarticleadd(ArticleDto articleDto) {
+        int i = 0;
+        try {
+            long l = System.currentTimeMillis();
+            Date date = new Date(l);
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String dateString = format.format(date);
+            articleDto.setUpdatatime(dateString);
+            System.out.println(articleDto);
+            i = iArticleService.add(articleDto);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       return i;
+    }
+
+
+    @ResponseBody
+    @RequestMapping("/article/tomess")
+    public String toarticlemess(int id){
+        System.out.println(id);
+        return "";
+    }
+
+    @RequestMapping("/article/mess")
+    public String articlemess(int id, Model model){
+        Article article = null;
+        try {
+            article = iArticleService.findById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("mess",article);
+        System.out.println(article);
+        return "articlemess";
+    }
+
+
+    @RequestMapping("/article/toupdate")
+    public String toupdate(int id,Model model) {
+        Article article = null;
+        try {
+            article  = iArticleService.findById(id);
+            model.addAttribute("articlemess",article);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "update";
+    }
+
+    @ResponseBody
+    @RequestMapping("/article/update")
+    public int update(Article article) {
+        int i = 0;
+        try {
+            long l = System.currentTimeMillis();
+            Date date = new Date(l);
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String dateString = format.format(date);
+            article.setUpdatatime(dateString);
+            i = iArticleService.modify(article);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
+
 
 
 }

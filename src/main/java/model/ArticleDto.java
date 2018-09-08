@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Article implements Serializable {
+public class ArticleDto implements Serializable {
 
     private int article_id;
     private String title;
@@ -13,29 +13,11 @@ public class Article implements Serializable {
     private int commentNum;
     private String updatatime;
     private int isadmin;
-    private Author author;
+    private int author_id;
     private int flg;
     private int isessence;
     private int readeNum;
     private int forum_id;
-
-
-
-    public int getForum_id() {
-        return forum_id;
-    }
-
-    public void setForum_id(int forum_id) {
-        this.forum_id = forum_id;
-    }
-
-    public int getReadeNum() {
-        return readeNum;
-    }
-
-    public void setReadeNum(int readeNum) {
-        this.readeNum = readeNum;
-    }
 
     public int getArticle_id() {
         return article_id;
@@ -61,7 +43,21 @@ public class Article implements Serializable {
         this.content = content;
     }
 
+    public int getLikeNum() {
+        return likeNum;
+    }
 
+    public void setLikeNum(int likeNum) {
+        this.likeNum = likeNum;
+    }
+
+    public int getCommentNum() {
+        return commentNum;
+    }
+
+    public void setCommentNum(int commentNum) {
+        this.commentNum = commentNum;
+    }
 
     public int getGood() {
         return good;
@@ -79,21 +75,7 @@ public class Article implements Serializable {
         this.collect = collect;
     }
 
-    public int getLikeNum() {
-        return likeNum;
-    }
 
-    public void setLikeNum(int likeNum) {
-        this.likeNum = likeNum;
-    }
-
-    public int getCommentNum() {
-        return commentNum;
-    }
-
-    public void setCommentNum(int commentNum) {
-        this.commentNum = commentNum;
-    }
 
     public String getUpdatatime() {
         return updatatime;
@@ -103,13 +85,20 @@ public class Article implements Serializable {
         this.updatatime = updatatime;
     }
 
-
-    public Author getAuthor() {
-        return author;
+    public int getIsadmin() {
+        return isadmin;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setIsadmin(int isadmin) {
+        this.isadmin = isadmin;
+    }
+
+    public int getAuthor_id() {
+        return author_id;
+    }
+
+    public void setAuthor_id(int author_id) {
+        this.author_id = author_id;
     }
 
     public int getFlg() {
@@ -128,27 +117,35 @@ public class Article implements Serializable {
         this.isessence = isessence;
     }
 
-    public int getIsadmin() {
-        return isadmin;
+    public int getReadeNum() {
+        return readeNum;
     }
 
-    public void setIsadmin(int isadmin) {
-        this.isadmin = isadmin;
+    public void setReadeNum(int readeNum) {
+        this.readeNum = readeNum;
+    }
+
+    public int getForum_id() {
+        return forum_id;
+    }
+
+    public void setForum_id(int forum_id) {
+        this.forum_id = forum_id;
     }
 
     @Override
     public String toString() {
-        return "Article{" +
+        return "ArticleDto{" +
                 "article_id=" + article_id +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", like=" + likeNum +
+                ", likeNUm=" + likeNum +
                 ", good=" + good +
                 ", collect=" + collect +
-                ", comment=" + commentNum +
+                ", commentNum=" + commentNum +
                 ", updatatime='" + updatatime + '\'' +
                 ", isadmin=" + isadmin +
-                ", author=" + author +
+                ", author_id=" + author_id +
                 ", flg=" + flg +
                 ", isessence=" + isessence +
                 ", readeNum=" + readeNum +

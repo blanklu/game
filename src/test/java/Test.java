@@ -1,5 +1,6 @@
 //import mapper.ArticleMapper;
 //import mapper.ForumMapper;
+//import model.Article;
 //import model.PageArc;
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +25,15 @@
 ////        Forum forum = forumMapper.selectById(1);
 ////
 ////        System.out.println(forum.getForumName());
-//        PageArc pageArc = new PageArc();
-//        pageArc.setId(1);
-//        pageArc.setLimit(10);
-//        pageArc.setPage(1);
+////        PageArc pageArc = new PageArc();
+////        pageArc.setId(1);
+////        pageArc.setLimit(10);
+////        pageArc.setPage(1);
+////
+////        System.out.println(articleMapper.selectList(pageArc));
 //
-//        System.out.println(articleMapper.selectList(pageArc));
+//        Article article = articleMapper.selectById(3);
+//        System.out.println(article.getAuthor().getName());
 //
 //
 //    }

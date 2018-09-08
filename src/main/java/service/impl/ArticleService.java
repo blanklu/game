@@ -2,6 +2,7 @@ package service.impl;
 
 import mapper.ArticleMapper;
 import model.Article;
+import model.ArticleDto;
 import model.FindListResult;
 import model.PageArc;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,39 @@ public class ArticleService implements IArticleService {
         int i = 0;
         try {
             i = articleMapper.delete(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+    @Override
+    public int add(ArticleDto articleDto) {
+        int i = 0;
+        try {
+            i = articleMapper.insert(articleDto);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+    @Override
+    public Article findById(int id) {
+        Article article = null;
+        try {
+            article = articleMapper.selectById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return article;
+    }
+
+    @Override
+    public int modify(Article article) {
+        int i = 0;
+        try {
+            i = articleMapper.update(article);
         } catch (Exception e) {
             e.printStackTrace();
         }

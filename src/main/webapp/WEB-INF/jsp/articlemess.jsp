@@ -22,34 +22,50 @@
     </style>
 </head>
 <body>
+
+
 <div class="weadmin-nav">
 <span class="layui-breadcrumb" style="font-size: 18px">
-    <a href="index">论坛列表</a>
-  <a><cite>${sessionFroumName}</cite></a>
+    <a href="../index">论坛列表</a>
+  <a href="../article?id=${sessionForumId}">${sessionFroumName}</a>
+  <a><cite>文章详情</cite></a>
 </span>
 </div>
-
 <div class="weadmin-body">
+
+
+
+    <h1>${mess.title}</h1>
+<br>
+
+    <%--<div style="color: #2E2D3C">
+        <span>作者:${mess.author.name}</span>
+        <span>发布时间:${mess.updatatime}</span>
+    </div>
+    <span>喜欢数:${mess.likeNum}</span>
+    <span>点赞数:${mess.good}</span>
+    <span>收藏数:${mess.collect}</span>
+    <span>评论数:${mess.commentNum}</span>--%>
     <div class="layui-row">
-        <form class="layui-form layui-col-md12 we-search" onsubmit="return false;">
-            商品搜索：
-            <div class="layui-inline">
-                <input type="text" id="title" name="title" placeholder="请输入文章标题" autocomplete="off" class="layui-input">
-            </div>
-            <button id = "search" class="layui-btn" lay-submit="" lay-filter="search" data-type="reload"><i class="layui-icon">&#xe615;</i></button>
-            <%--<button class="layui-btn" onclick="WeAdminShow('发表文章','./add',600,500)"><i class="layui-icon">&#xe61f;</i>添加</button>--%>
-            <button class="layui-btn" id="add"><i class="layui-icon">&#xe61f;</i>添加</button>
-        </form>
-    </div>
-    <div class="weadmin-block demoTable">
+        <div class="layui-col-md4">
+            <span>作者:${mess.author.name}</span>
+            &nbsp;&nbsp;
+            <span>更新时间:${mess.updatatime}</span>
+        </div>
+        <div class="layui-col-md4 layui-col-md-offset4" style="text-align: right;color: #8D8D8D">
+            <span><i class="layui-icon ">&#xe6af;</i>  ${mess.likeNum}</span>
+            <span><i class="layui-icon ">&#xe6c6;</i>  ${mess.good}</span>
+            <span><i class="layui-icon ">&#xe600;</i>  ${mess.collect}</span>
+            <span><i class="layui-icon ">&#xe63a;</i>  ${mess.commentNum}</span>
+        </div>
 
     </div>
+<hr>
+<br>
+<p>${mess.content}</p>
 
 
-    <table id="demo" ></table>
 </div>
-
-
 <script src="${pageContext.request.contextPath}/lib/layui/layui.js"></script>
 <script>
 
@@ -58,7 +74,7 @@
         var element = layui.element;
         var form = layui.form;
         var $ = layui.jquery;
-        table.render({
+        /*table.render({
             elem:'#demo',
             url:'articles',
             page:true,
@@ -73,7 +89,7 @@
                 {field: 'caozuo', title: '操作', templet: '#caozuo'}
             ]]
 
-        })
+        })*/
 
        /* form.on('submit(sss)',function (data) {
             console.log("进来了");
@@ -95,24 +111,23 @@
             );
         });*/
 
-        form.on('submit(sss)',function (data) {
+        /*form.on('submit(sss)',function (data) {
                 console.log("进来了");
                 var datas = $(data.elem);
                 // console.log(datas.parents('tr').first().find('td').eq(0).text());
                 var id = datas.parents('tr').first().find('td').eq(0).text();
 
                 $.post(
-                    './article/tomess',
+                    './article/mess',
                     {'id':id},
                     function (data) {
                         layer.msg("跳转了");
-                        window.location.href="./article/mess?id="+id;
                     }
                 )
             }
-        );
+        );*/
 
-        form.on('submit(hhh)',function (data) {
+        /*form.on('submit(hhh)',function (data) {
             console.log("进来了");
             var datas = $(data.elem);
             // console.log(datas.parents('tr').first().find('td').eq(1).text());
@@ -130,9 +145,9 @@
                     }
                 }
             );
-        });
+        });*/
 
-        $("#search").on('click', function () {
+        /*$("#search").on('click', function () {
             //为了获取按钮的data-type属性
 
                 //模糊查询，提交一个异步请求到后台 {title}
@@ -160,56 +175,22 @@
 
             location.href="add"
 
-        });
-
-        form.on('submit(change)',function (data) {
-                console.log("进来了");
-                var datas = $(data.elem);
-                // console.log(datas.parents('tr').first().find('td').eq(0).text());
-                var id = datas.parents('tr').first().find('td').eq(0).text();
-
-                window.location.href="./article/toupdate?id="+id;
-            }
-        );
+        });*/
 
 
     });
 
 </script>
 
-<script type="text/html" id="caozuo">
+<%--<script type="text/html" id="caozuo">
     <div class="layui-form">
-        <button class="layui-btn  layui-btn-sm" lay-filter="sss" lay-submit type="submit">查看</button>
-        <button class="layui-btn  layui-btn-sm" lay-filter="change" lay-submit type="submit">修改</button>
+        <button class="layui-btn  layui-btn-sm" lay-filter="sss" lay-submit type="submit">查看详情</button>
         <button class="layui-btn  layui-btn-sm" lay-filter="hhh" lay-submit type="submit">删除</button>
     </div>
-</script>
+</script>--%>
 
 <script>
-    /*window.WeAdminShow = function(title, url, w, h) {
-        if(title == null || title == '') {
-            title = false;
-        };
-        if(url == null || url == '') {
-            url = "404.html";
-        };
-        if(w == null || w == '') {
-            w = ($(window).width() * 0.9);
-        };
-        if(h == null || h == '') {
-            h = ($(window).height() - 50);
-        };
-        layer.open({
-            type: 2,
-            area: [w + 'px', h + 'px'],
-            fix: false, //不固定
-            maxmin: true,
-            shadeClose: true,
-            shade: 0.4,
-            title: title,
-            content: url
-        });
-    }*/
+
 </script>
 </body>
 </html>
